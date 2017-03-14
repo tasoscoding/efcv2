@@ -1,0 +1,42 @@
+﻿@model efcv2.Models.Value
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Value</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Value1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Value1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sensor.SensorDescr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sensor.SensorDescr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ValueID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
