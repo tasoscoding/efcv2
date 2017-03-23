@@ -17,6 +17,8 @@ namespace efcv2.Controllers
         private efcv2DBEntities db = new efcv2DBEntities();
 
         // GET: api/Values
+        [HttpGet]
+        [Route("api/values/all")]
         public IQueryable<Value> GetValues()
         {
             return db.Values;
@@ -24,15 +26,16 @@ namespace efcv2.Controllers
 
         // GET: api/Values/5
         [ResponseType(typeof(Value))]
+        [Route("api/values/{id}")]
         public IHttpActionResult GetValue(long id)
         {
-            Value value = db.Values.Find(id);
-            if (value == null)
-            {
-                return NotFound();
-            }
+            //Value value = db.Values.Find(id);
+            //if (value == null)
+            //{
+            //    return NotFound();
+            //}
 
-            return Ok(value);
+            return Ok(id+1);
         }
 
         // PUT: api/Values/5
