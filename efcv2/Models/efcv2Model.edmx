@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="efcv2DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="efcv2DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -66,6 +66,13 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sensori">
+          <Key>
+            <PropertyRef Name="SensoriID" />
+          </Key>
+          <Property Name="SensoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SensorDescr" Type="text" />
+        </EntityType>
         <EntityType Name="Sensors">
           <Key>
             <PropertyRef Name="SensorID" />
@@ -89,6 +96,15 @@
           </Key>
           <Property Name="ValueID" Type="bigint" Nullable="false" />
           <Property Name="SensorID" Type="int" />
+          <Property Name="Value" Type="nchar" MaxLength="10" />
+          <Property Name="TimeStamp" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Valuesi">
+          <Key>
+            <PropertyRef Name="ValueiID" />
+          </Key>
+          <Property Name="ValueiID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SensoriID" Type="int" />
           <Property Name="Value" Type="nchar" MaxLength="10" />
           <Property Name="TimeStamp" Type="nchar" MaxLength="10" />
         </EntityType>
@@ -160,6 +176,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Valuesi_Sensori">
+          <End Role="Sensori" Type="Self.Sensori" Multiplicity="0..1" />
+          <End Role="Valuesi" Type="Self.Valuesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensori">
+              <PropertyRef Name="SensoriID" />
+            </Principal>
+            <Dependent Role="Valuesi">
+              <PropertyRef Name="SensoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="efcv2DBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -167,9 +195,11 @@
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sensori" EntityType="Self.Sensori" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Values" EntityType="Self.Values" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Valuesi" EntityType="Self.Valuesi" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -190,9 +220,12 @@
             <End Role="Sensors" EntitySet="Sensors" />
             <End Role="Values" EntitySet="Values" />
           </AssociationSet>
+          <AssociationSet Name="FK_Valuesi_Sensori" Association="Self.FK_Valuesi_Sensori">
+            <End Role="Sensori" EntitySet="Sensori" />
+            <End Role="Valuesi" EntitySet="Valuesi" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="efcv2DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -352,7 +385,43 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Sensoris" EntityType="efcv2DBModel.Sensori" />
+          <EntitySet Name="Valuesis" EntityType="efcv2DBModel.Valuesi" />
+          <AssociationSet Name="FK_Valuesi_Sensori" Association="efcv2DBModel.FK_Valuesi_Sensori">
+            <End Role="Sensori" EntitySet="Sensoris" />
+            <End Role="Valuesi" EntitySet="Valuesis" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Sensori">
+          <Key>
+            <PropertyRef Name="SensoriID" />
+          </Key>
+          <Property Name="SensoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SensorDescr" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Valuesis" Relationship="efcv2DBModel.FK_Valuesi_Sensori" FromRole="Sensori" ToRole="Valuesi" />
+        </EntityType>
+        <EntityType Name="Valuesi">
+          <Key>
+            <PropertyRef Name="ValueiID" />
+          </Key>
+          <Property Name="ValueiID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SensoriID" Type="Int32" />
+          <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TimeStamp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Sensori" Relationship="efcv2DBModel.FK_Valuesi_Sensori" FromRole="Valuesi" ToRole="Sensori" />
+        </EntityType>
+        <Association Name="FK_Valuesi_Sensori">
+          <End Type="efcv2DBModel.Sensori" Role="Sensori" Multiplicity="0..1" />
+          <End Type="efcv2DBModel.Valuesi" Role="Valuesi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensori">
+              <PropertyRef Name="SensoriID" />
+            </Principal>
+            <Dependent Role="Valuesi">
+              <PropertyRef Name="SensoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -451,6 +520,24 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Sensoris">
+            <EntityTypeMapping TypeName="efcv2DBModel.Sensori">
+              <MappingFragment StoreEntitySet="Sensori">
+                <ScalarProperty Name="SensorDescr" ColumnName="SensorDescr" />
+                <ScalarProperty Name="SensoriID" ColumnName="SensoriID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Valuesis">
+            <EntityTypeMapping TypeName="efcv2DBModel.Valuesi">
+              <MappingFragment StoreEntitySet="Valuesi">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="SensoriID" ColumnName="SensoriID" />
+                <ScalarProperty Name="ValueiID" ColumnName="ValueiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

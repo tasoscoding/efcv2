@@ -185,9 +185,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SensorisController.cs" />
     <Compile Include="Controllers\SensorsController.cs" />
     <Compile Include="Controllers\Values1Controller.cs" />
+    <Compile Include="Controllers\ValuesApiController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\ValuesisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,10 +230,16 @@
     <Compile Include="Models\Sensor.cs">
       <DependentUpon>efcv2Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sensori.cs">
+      <DependentUpon>efcv2Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>efcv2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Value.cs">
+      <DependentUpon>efcv2Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Valuesi.cs">
       <DependentUpon>efcv2Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -320,6 +329,16 @@
     <Content Include="Views\Values1\Details.cshtml" />
     <Content Include="Views\Values1\Edit.cshtml" />
     <Content Include="Views\Values1\Index.cshtml" />
+    <Content Include="Views\Valuesis\Create.cshtml" />
+    <Content Include="Views\Valuesis\Delete.cshtml" />
+    <Content Include="Views\Valuesis\Details.cshtml" />
+    <Content Include="Views\Valuesis\Edit.cshtml" />
+    <Content Include="Views\Valuesis\Index.cshtml" />
+    <Content Include="Views\Sensoris\Create.cshtml" />
+    <Content Include="Views\Sensoris\Delete.cshtml" />
+    <Content Include="Views\Sensoris\Details.cshtml" />
+    <Content Include="Views\Sensoris\Edit.cshtml" />
+    <Content Include="Views\Sensoris\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

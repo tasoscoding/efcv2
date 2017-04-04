@@ -73,35 +73,22 @@ namespace efcv2.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Values
-        [ResponseType(typeof(Value))]
-        public IHttpActionResult PostValue(Value value)
+        [HttpPost]
+        [Route("api/value")]
+        public IHttpActionResult kaneKati(IEnumerable<long> valueList)
         {
-            if (!ModelState.IsValid)
+            foreach (long v in valueList)
             {
-                return BadRequest(ModelState);
+                Valuesi value = new Valuesi();
+                value.Value = v.ToString();
+                value.TimeStamp = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                value.SensoriID = 1;
+                db.Valuesis.Add(value);
             }
-
-            db.Values.Add(value);
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (ValueExists(value.ValueID))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = value.ValueID }, value);
+            db.SaveChanges();
+            return Ok(valueList);
         }
+
 
         // DELETE: api/Values/5
         [ResponseType(typeof(Value))]

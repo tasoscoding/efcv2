@@ -33,5 +33,7 @@ namespace efcv2.Models
         public virtual DbSet<Sensor> Sensors { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Value> Values { get; set; }
+        public virtual DbSet<Sensori> Sensoris { get; set; }
+        public virtual DbSet<Valuesi> Valuesis { get; set; }
     }
 }
