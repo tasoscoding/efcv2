@@ -17,7 +17,7 @@ namespace efcv2.Models
         public long ValueiID { get; set; }
         public Nullable<int> SensoriID { get; set; }
         public string Value { get; set; }
-        public string TimeStamp { get; set; }
+        public Nullable<System.DateTime> TimeStamp { get; set; }
     
         public virtual Sensori Sensori { get; set; }
     }

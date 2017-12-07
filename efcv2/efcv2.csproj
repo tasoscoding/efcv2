@@ -183,13 +183,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DataRetrievalController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SensorisController.cs" />
     <Compile Include="Controllers\SensorsController.cs" />
+    <Compile Include="Controllers\V.cs" />
     <Compile Include="Controllers\Values1Controller.cs" />
     <Compile Include="Controllers\ValuesApiController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\Valuesis2Controller.cs" />
     <Compile Include="Controllers\ValuesisController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -210,6 +212,8 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>efcv2Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\DataService.cs" />
     <Compile Include="Models\efcv2Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -227,6 +231,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Sensor.cs">
       <DependentUpon>efcv2Model.tt</DependentUpon>
     </Compile>
@@ -339,6 +344,7 @@
     <Content Include="Views\Sensoris\Details.cshtml" />
     <Content Include="Views\Sensoris\Edit.cshtml" />
     <Content Include="Views\Sensoris\Index.cshtml" />
+    <Content Include="Views\DataRetrieval\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,30 +12,34 @@ using efcv2.Models;
 
 namespace efcv2.Controllers
 {
-    public class ValuesApiController : ApiController
+    public class Valuesis2Controller : ApiController
     {
         private efcv2DBEntities db = new efcv2DBEntities();
 
-        // GET: api/ValuesApi
+        // GET: api/Valuesis2
         public IQueryable<Valuesi> GetValuesis()
         {
             return db.Valuesis;
         }
 
-        // GET: api/ValuesApi/5
+        // GET: api/Valuesis2/5
         [ResponseType(typeof(Valuesi))]
         public IHttpActionResult GetValuesi(long id)
         {
+
+            
+            
             Valuesi valuesi = db.Valuesis.Find(id);
             if (valuesi == null)
             {
                 return NotFound();
             }
-            return Ok(new { x = id, y = Double.Parse(valuesi.Value) });
-            //return Ok(valuesi);
+
+            return Ok(valuesi);
+            
         }
 
-        // PUT: api/ValuesApi/5
+        // PUT: api/Valuesis2/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutValuesi(long id, Valuesi valuesi)
         {
@@ -70,7 +74,7 @@ namespace efcv2.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ValuesApi
+        // POST: api/Valuesis2
         [ResponseType(typeof(Valuesi))]
         public IHttpActionResult PostValuesi(Valuesi valuesi)
         {
@@ -85,7 +89,7 @@ namespace efcv2.Controllers
             return CreatedAtRoute("DefaultApi", new { id = valuesi.ValueiID }, valuesi);
         }
 
-        // DELETE: api/ValuesApi/5
+        // DELETE: api/Valuesis2/5
         [ResponseType(typeof(Valuesi))]
         public IHttpActionResult DeleteValuesi(long id)
         {

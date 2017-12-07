@@ -106,7 +106,7 @@
           <Property Name="ValueiID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SensoriID" Type="int" />
           <Property Name="Value" Type="nchar" MaxLength="10" />
-          <Property Name="TimeStamp" Type="nchar" MaxLength="10" />
+          <Property Name="TimeStamp" Type="datetime" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -407,7 +407,7 @@
           <Property Name="ValueiID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SensoriID" Type="Int32" />
           <Property Name="Value" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TimeStamp" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TimeStamp" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Sensori" Relationship="efcv2DBModel.FK_Valuesi_Sensori" FromRole="Valuesi" ToRole="Sensori" />
         </EntityType>
         <Association Name="FK_Valuesi_Sensori">
